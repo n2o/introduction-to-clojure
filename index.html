@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Einführung in Clojure</title>
+
+  <link rel="stylesheet" href="css/assets/bootstrap-grid.min.css">
+
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="css/highlight/github.css">
+
+  <!-- Base Theme for presentation -->
+  <link rel="stylesheet" href="css/theme/hhu/hhu.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <style>
+    .bg-blue {
+      background-color: #176fc1;
+    }
+
+    .bg-red {
+      background-color: #be0a26;
+    }
+
+    .bg-green {
+      background-color: #97bf0d;
+    }
+
+    .bg-grey {
+      background-color: #d9dadb;
+    }
+
+    .box-white {
+      background-color: white;
+      border: 0.5px solid #176fc1 !important;
+    }
+
+    .controls button {
+      color: #d9dadb !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reveal">
+    <div id="logo">
+      <object data="css/theme/hhu/img/unilogo.svg" type="image/svg+xml"></object>
+    </div>
+    <header>
+      <span></span>
+    </header>
+    <div id="slidenumber"></div>
+
+    <div class="slides">
+      <section data-state="footer">
+        <div id="title">
+          <!--<h4>Strukturierte Diskussionen &ndash; und nun?</h4>-->
+          <h3>Einführung in
+            <img src="img/clojure_logo.svg" style="height: 1em;line-height:1em;margin-bottom: -10px;"> Clojure
+          </h3>
+          <hr/>
+          <p style="font-size: 0.8em;">
+            <strong>Christian Meter</strong>
+          </p>
+          <small>
+            Institut für Informatik
+            <br> Heinrich-Heine-Universität Düsseldorf
+            <br>
+            <br> meter@cs.uni-duesseldorf.de
+          </small>
+        </div>
+      </section>
+
+      <section data-state="intro">
+        <style>
+          .intro header span:after {
+            content: "Clojure ist...";
+          }
+        </style>
+        <p>funktional</p>
+        <p>dynamisch typisiert</p>
+        <p>auf der JVM gehostet</p>
+        <p>ein Lisp-Dialekt</p>
+      </section>
+
+      <section data-state="history">
+        <style>
+          .history header span:after {
+            content: "Geschichte von Clojure";
+          }
+        </style>
+        <div class="row">
+          <div class="col-4">
+            <img src="img/clojure_logo.svg" alt="">
+          </div>
+          <div class="col-8">
+            <p>Öffentliches Release: Okt. 2007</p>
+            <p>Aktuelle Version 1.9</p>
+            <p>Extrem seriöse Entwicklung</p>
+            <p>Nicht "der neuste heiße Scheiß" </p>
+            <p class="highlight">Trotzdem nicht langweilig</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-state="clojure">
+        <style>
+          .clojure header span:after {
+            content: "Clojure";
+          }
+        </style>
+        <img src="img/tweet-boring-clojure.png" alt="">
+      </section>
+
+      <section data-state="clojure-data">
+        <style>
+          .clojure-data header span:after {
+            content: "Datenstrukturen";
+          }
+
+          pre.table {
+            width: 100%;
+          }
+        </style>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <pre class="table"><code>42 1.3 4/3</code></pre>
+              </td>
+              <td>Numbers</td>
+            </tr>
+
+            <tr>
+              <td>
+                <pre class="table"><code>"foo"</code></pre>
+              </td>
+              <td>Strings</td>
+            </tr>
+
+            <tr>
+              <td>
+                <pre class="table"><code>:foo :bar :baz</code></pre>
+              </td>
+              <td>Keywords</td>
+            </tr>
+
+            <tr>
+              <td>
+                <pre class="table"><code>[] '() #{} {}</code></pre>
+              </td>
+              <td>Collections
+                <small>(Vector, List, Set, Map)</small>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <pre class="table"><code>true false</code></pre>
+              </td>
+              <td>Booleans</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </section>
+
+      <section data-state="clojure-hof">
+        <style>
+          .clojure-hof header span:after {
+            content: "Higher-Order-Functions";
+          }
+        </style>
+        <img src="img/hof.png" alt="">
+        <small>
+          <small>
+            <a href="https://speakerdeck.com/bendisposto/verliebt-in-clojure?slide=12">https://speakerdeck.com/bendisposto/verliebt-in-clojure?slide=12</a>
+          </small>
+        </small>
+      </section>
+
+      <section data-state="clojure-code">
+        <style>
+          .clojure-code header span:after {
+            content: "Beispiele";
+          }
+        </style>
+        <pre><code>(+ 1 2)
+;; 3</code></pre>
+        <pre><code>(def x 42)
+x
+;; 42</code></pre>
+        <pre><code>(defn square [num] (* num num))
+(square 4)
+;; 16</code></pre>
+        <pre><code>(map square [1 2 3])
+;; (1 4 9)</code></pre>
+        <pre><code>(reduce + (map square [1 2 3]))
+;; 14</code></pre>
+      </section>
+
+      <section data-state="demo">
+        <style>
+          .demo header span:after {
+            content: "Demo";
+          }
+        </style>
+        <strong>To the REPL!</strong>
+      </section>
+
+      <section data-state="links">
+        <style>
+          .links header span:after {
+            content: "Links: Aufgaben";
+          }
+        </style>
+        <p>
+          Web-Spielchen
+          <br>
+          <a href="http://clojurescriptkoans.com">ClojureScript Koans</a>
+        </p>
+
+        <p>
+          Web-IDE mit eigener Codeeingabe und grafischen Beispielen
+          <br>
+          <a href="https://www.maria.cloud/">maria.cloud</a>
+        </p>
+
+        <p>
+          Herunterladbare Testaufgaben
+          <br>
+          <a href="http://exercism.io/languages/clojure/about">exercism.io</a>
+        </p>
+
+        <p>
+          Katas aus den letzten Meetups
+          <br>
+          <a href="https://github.com/clojuredus/clojure-coding-dojo">https://github.com/clojuredus/clojure-coding-dojo</a>
+        </p>
+
+      </section>
+
+      <section data-state="links-editors">
+        <style>
+          .links-editors header span:after {
+            content: "Links: Editoren";
+          }
+        </style>
+
+        <ul>
+          <li>
+            <a href="https://leiningen.org/">Build-Tool Leiningen</a>
+          </li>
+          <li>
+            <a href="http://spacemacs.org">Spacemacs + Cider</a>
+          </li>
+          <ul>
+            <li>
+              <a href="https://joyclark.org/post/sketchnote/clojure-meetup/2017/08/17/spacemacs.html">Blogpost von Joy über Spacemacs + Clojure</a>
+            </li>
+          </ul>
+          <li>
+            <a href="https://cursive-ide.com/">IntelliJ + Cursive</a>
+          </li>
+        </ul>
+      </section>
+
+
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+      controlsTutorial: false,
+      controlsBackArrows: 'visible',
+      history: true,
+      center: true,
+      // slideNumber: true,
+      transition: 'fade', // none/fade/slide/convex/concave/zoom
+      // More info https://github.com/hakimel/reveal.js#dependencies
+      dependencies: [
+        {
+          src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function () {
+            hljs.initHighlightingOnLoad();
+          }
+        }
+      ]
+    });
+  </script>
+</body>
+
+</html>
